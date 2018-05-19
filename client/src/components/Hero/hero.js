@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './routeComponent.css';
+import './hero.css';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 
 class RouteComponent extends Component {
   render() {
@@ -9,11 +10,18 @@ class RouteComponent extends Component {
         <div className="navbar-whole-box">
           <div className="navbar-items-box">
             <div className="navbar-item">
+            <Link to={`/`} style={{ textDecoration: 'none', color: 'white', textAlign: 'center'}}>
               <p>Alcoholic cocktails</p>
+            </Link>
             </div>
+
+
             <div className="navbar-item">
+              <Link to={`/analcolic`} style={{textDecoration: 'none', color: 'white', textAlign: 'center'}}>
               <p>Analcolic cocktails</p>
+              </Link>
             </div>
+
           </div>
           <div className="navbar-items-box">
             <div className="navbar-item">
@@ -25,7 +33,7 @@ class RouteComponent extends Component {
           </div>
         </div>
           <div className="text-container">
-            Alcolic cocktails
+            The cocktails guide
           </div>
       </div>
     );

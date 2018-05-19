@@ -6,8 +6,10 @@ import './App.css'
 import store from './store'
 import Customers from './components/Customer/customers';
 import Header from './components/Header/header';
-import RouteComponent from './components/RouteComponent/routeComponent';
-import VisualizeArray from './components/visualizeArray';
+import Hero from './components/Hero/hero';
+// import RouteComponent from './components/RouteComponent/routeComponent';
+import Alcolic from './components/alcolic';
+import Analcolic from './components/analcolic';
 
 class App extends Component {
   constructor(props) {
@@ -35,16 +37,40 @@ class App extends Component {
   this.requestInfo();
   }
 
+
+
+
+
   render () {
+    const data = this.state.data;
+  const teamDailyData = this.state.teamDailyData;
     return (
-      <Provider store={ store }>
-        <div className="App">
-          <RouteComponent />
-          <Customers/>
-        </div>
-      </Provider>
-    )
-  }
+      <div>
+      <Hero />
+      <Switch>
+        <Route exact path='/' component={ Alcolic } />
+          <Route path='/analcolic' component={ Analcolic } />
+      </Switch>
+
+      </div>
+    );
 }
 
+}
+
+//  <Route path='/analcolic' render={(props) => <Analcolic {...props} listData={data}/>}/>
+// <Route path='/scheduled' render={(props) => <ScheduledMatchs {...props} matchsDay={data} matchsDayList={data} teamsNamesArray = {data} matchsTeam = {teamDailyData} onSelectTeam={this.selectTeam} onSelectValue = {this.state.selectValue} />} />
+
 export default App
+
+//Render con redux
+// render () {
+//   return (
+//     <Provider store={ store }>
+//       <div className="App">
+//         <Hero />
+//         <Customers/>
+//       </div>
+//     </Provider>
+//   )
+// }
