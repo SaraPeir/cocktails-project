@@ -1,0 +1,10 @@
+.header-style{
+  position: fixed;
+  background: #aaa;
+  color: #fff;
+  text-align: center;
+  font-size: 30px;
+  height: 100px;
+  line-height: 100px;
+  font-weight: bold;
+}

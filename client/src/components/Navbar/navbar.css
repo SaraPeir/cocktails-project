@@ -1,0 +1,45 @@
+.navbar-whole-box{
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+transition: all 2s ease;
+position: fixed;
+}
+
+.navbar-items-box{
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+}
+
+.navbar-item{
+  width: 50%;
+  color: #fff;
+  opacity: 1;
+  height: 100px;
+  line-height: 70px;
+  font-size: 20px;
+
+}
+
+.navbar-whole-box:hover{
+  background: #E9967A;
+  opacity: 0.8;
+}
+
+.navbar-item:hover{
+  cursor: pointer;
+}
+
+
+.navbar-wrapper{
+  width: 100%;
+  height: 700px;
+  background-image: url('../../images/cocktail-large-screen.jpeg');
+  background-size: cover;
+  background-position: center;
+}
