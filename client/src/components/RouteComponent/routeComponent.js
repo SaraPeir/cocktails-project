@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './navbar.css';
+import './routeComponent.css';
 
-class Navbar extends Component {
+class RouteComponent extends Component {
   render() {
     return (
-      <div className="navbar-wrapper">
+      <div className="wrapper">
         <div className="navbar-whole-box">
           <div className="navbar-items-box">
             <div className="navbar-item">
@@ -24,9 +24,12 @@ class Navbar extends Component {
             </div>
           </div>
         </div>
+          <div className="text-container">
+            Alcolic cocktails
+          </div>
       </div>
     );
   }
 }
 
-export default Navbar;
+export default RouteComponent;
