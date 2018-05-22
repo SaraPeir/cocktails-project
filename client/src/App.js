@@ -24,8 +24,11 @@ class App extends Component {
 
     requestInfo() {
       var apiAlcoholicCocktails =  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic`).then(response => response.json());
+      var apiGinCocktails =  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin`).then(response => response.json());
+      var apiVodkaCocktails =  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Vodka`).then(response => response.json());
+      var apiRhumCocktails =  fetch('/api/rhum').then(response => response.json());
       var apiNotAlcoholicCocktails = fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic`).then(response => response.json());
-      var combinedData = [apiAlcoholicCocktails, apiNotAlcoholicCocktails];
+      var combinedData = [apiAlcoholicCocktails, apiGinCocktails, apiVodkaCocktails, apiRhumCocktails, apiNotAlcoholicCocktails];
       Promise.all(combinedData).then(c => {
       let allCocktailsData = this.state.data;
       allCocktailsData.push(c);
