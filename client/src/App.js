@@ -5,7 +5,7 @@ import logo from './logo.svg'
 import './App.css'
 import store from './store'
 import Customers from './components/Customer/customers';
-import Header from './components/Header/header';
+import Footer from './components/Footer/footer';
 import Hero from './components/Hero/hero';
 import Alcolic from './components/Alcolic/alcolic';
 //import Analcolic from './components/Analcolic/analcolic';
@@ -44,10 +44,10 @@ class App extends Component {
 
     render () {
       return (
-        <div>
-        <Hero />
+        <div className="app">
         <Switch>
-        <Route exact path='/' render={(props) => <Alcolic {...props} array={this.state.data}/>}/>
+        <Route exact path='/' component={ Hero } />
+        <Route path='/alcolic' render={(props) => <Alcolic {...props} array={this.state.data}/>}/>
         <Route path='/analcolic' component={ Analcolic } />
         </Switch>
         </div>

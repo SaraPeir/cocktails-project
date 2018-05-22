@@ -1,0 +1,13 @@
+.footer-style{
+  width: 100%;
+  background:  #E9967A;
+  text-align: center;
+  color: #fff;
+  text-align: center;
+  font-size: 30px;
+  height: 50px;
+  line-height: 10px;
+  font-weight: bold;
+  position: fixed;
+  bottom: 2px;
+}

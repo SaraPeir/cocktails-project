@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './alcolic.css';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 
 class Alcolic extends Component {
 
@@ -40,19 +41,28 @@ class Alcolic extends Component {
   render() {
 
     return (
+<div>
+<div className="alcolic-page-background">
+</div>
+
+
     <div className="component-wrapper">
+
       <div className="select-wrapper">
-        <h1>Gin cocktails</h1>
-        <select> <option>Gin cocktails</option> {this.createGinOptions()}</select>
-        <h1>Vodka cocktails</h1>
-        <select><option>Vodka cocktails</option>{this.createVodkaOptions()}</select>
-        <h1>Rhum cocktails</h1>
-        <select><option>Rhum cocktails</option>{this.createRhumOptions()}</select>
+      <Link to={`/`} style={{ textDecoration: 'none', color: 'white', textAlign: 'center'}}>
+        <button className="to-home-button"> Home </button>
+      </Link>
+        <select className="select-style"> <option>Gin cocktails</option> {this.createGinOptions()}</select>
+        <select className="select-style"><option>Vodka cocktails</option>{this.createVodkaOptions()}</select>
+        <select className="select-style"><option>Rhum cocktails</option>{this.createRhumOptions()}</select>
       </div>
-      <div className="cocktail-wrapper">
+      <div className="cocktail-wrapper hidden">
           Hola
       </div>
-    </div>
+
+
+</div>
+</div>
     );
   }
 }
