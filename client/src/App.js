@@ -21,12 +21,14 @@ class App extends Component {
   data: [],
   idGin: [],
   idVodka: [],
-  ginDrinksDetails: []
+  ginDrinksDetails: [],
+  vodkaDrinksDetails: []
   }
-  this.requestInfoSingleDrinks = this.requestInfoSingleDrinks.bind(this);
+  this.requestInfoGinDrinks = this.requestInfoGinDrinks.bind(this);
+  this.requestInfoVodkaDrinks = this.requestInfoVodkaDrinks.bind(this);
   }
 
-    requestInfoSingleDrinks(){
+    requestInfoGinDrinks(){
       const {idGin, idVodka} = this.state;
       if(idGin !== undefined && idGin.length > 0){
       for(let i= 0; i < idGin.length; i++){
@@ -42,7 +44,32 @@ class App extends Component {
           })
       }
     } else{
-      return []
+      return (this.setState({
+        ginDrinksDetails:[]
+      }))
+}
+}
+
+
+requestInfoVodkaDrinks(){
+  const idVodka = this.state.idVodka;
+  if(idVodka !== undefined && idVodka.length > 0){
+  for(let i= 0; i < idVodka.length; i++){
+    var apiRequest = fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idVodka[i]}`).then(response => response.json())
+      .then(data => {
+      let vodkaDrinksDetailsArray = this.state.vodkaDrinksDetails;
+      vodkaDrinksDetailsArray.push(data)
+        console.log('Ok');
+        console.log(this.state.vodkaDrinksDetails) //Para verificar que vodkaDetails ha cambiado
+        return (this.setState({
+          vodkaDrinksDetails:vodkaDrinksDetailsArray
+        }))
+      })
+  }
+} else{
+  return (this.setState({
+    codkaDrinksDetails:[]
+  }))
 }
 }
 
@@ -60,19 +87,12 @@ class App extends Component {
         data:allCocktailsData,
         idGin:allCocktailsData[0][1].drinks.map( (g, index) => g.idDrink),
         idVodka:allCocktailsData[0][2].drinks.map( (v, index) => v.idDrink)
-        //ginDrinksDetails: this.requestInfoSingleDrinks()
      });
-this.requestInfoSingleDrinks()
+        this.requestInfoGinDrinks();
+        this.requestInfoVodkaDrinks();
     })
     }
 
-    // idGin:allCocktailsData[0][1].drinks.map((idG, index) => {
-    //     return idG.idDrink;
-    // })
-
-
-    // idGin: allCocktailsData[0][1].drinks,
-    // idVodka: allCocktailsData[0][2].drinks.map((id, index) =>  id.idDrink)
 
     componentDidMount(){
     this.requestInfo();
