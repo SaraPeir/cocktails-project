@@ -18,9 +18,38 @@ class App extends Component {
   constructor(props) {
   super(props);
   this.state = {
-  data: []
+  data: [],
+  idGin: [],
+  idVodka: [],
+  ginDrinksDetails: []
   }
+  this.requestInfoSingleDrinks = this.requestInfoSingleDrinks.bind(this);
   }
+
+    requestInfoSingleDrinks(){
+      const {idGin, idVodka} = this.state;
+      if(idGin !== undefined && idGin.length > 0){
+      for(let i= 0; i < idGin.length; i++){
+        var apiRequest = fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idGin[i]}`).then(response => response.json())
+          .then(data => {
+          let ginDrinksDetailsArray = this.state.ginDrinksDetails;
+          ginDrinksDetailsArray.push(data)
+          // this.setState({
+          //   ginDrinksDetails:ginDrinksDetailsArray
+          // });
+            console.log(ginDrinksDetailsArray);
+            console.log('Ok');
+            return (this.setState({
+              ginDrinksDetails:ginDrinksDetailsArray
+            }))
+          })
+
+      //  }).catch(error => alert('Error to load'));
+      }
+    } else{
+      return []
+}
+}
 
     requestInfo() {
       var apiAlcoholicCocktails =  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic`).then(response => response.json());
@@ -33,10 +62,22 @@ class App extends Component {
       let allCocktailsData = this.state.data;
       allCocktailsData.push(c);
       this.setState({
-        data:allCocktailsData
-      });
+        data:allCocktailsData,
+        idGin:allCocktailsData[0][1].drinks.map( (g, index) => g.idDrink),
+        idVodka:allCocktailsData[0][2].drinks.map( (v, index) => v.idDrink)
+        //ginDrinksDetails: this.requestInfoSingleDrinks()
+     });
+this.requestInfoSingleDrinks()
     })
     }
+
+    // idGin:allCocktailsData[0][1].drinks.map((idG, index) => {
+    //     return idG.idDrink;
+    // })
+
+
+    // idGin: allCocktailsData[0][1].drinks,
+    // idVodka: allCocktailsData[0][2].drinks.map((id, index) =>  id.idDrink)
 
     componentDidMount(){
     this.requestInfo();
