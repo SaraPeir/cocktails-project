@@ -34,17 +34,12 @@ class App extends Component {
           .then(data => {
           let ginDrinksDetailsArray = this.state.ginDrinksDetails;
           ginDrinksDetailsArray.push(data)
-          // this.setState({
-          //   ginDrinksDetails:ginDrinksDetailsArray
-          // });
-            console.log(ginDrinksDetailsArray);
             console.log('Ok');
+            console.log(this.state.ginDrinksDetails) //Para verificar que ginDetails ha cambiado
             return (this.setState({
               ginDrinksDetails:ginDrinksDetailsArray
             }))
           })
-
-      //  }).catch(error => alert('Error to load'));
       }
     } else{
       return []
