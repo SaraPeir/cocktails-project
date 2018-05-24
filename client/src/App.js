@@ -28,49 +28,98 @@ class App extends Component {
   this.requestInfoVodkaDrinks = this.requestInfoVodkaDrinks.bind(this);
   }
 
-    requestInfoGinDrinks(){
-      const {idGin, idVodka} = this.state;
-      if(idGin !== undefined && idGin.length > 0){
-      for(let i= 0; i < idGin.length; i++){
-        var apiRequest = fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idGin[i]}`).then(response => response.json())
-          .then(data => {
-          let ginDrinksDetailsArray = this.state.ginDrinksDetails;
-          ginDrinksDetailsArray.push(data)
-            console.log('Ok');
-            console.log(this.state.ginDrinksDetails) //Para verificar que ginDetails ha cambiado
-            return (this.setState({
-              ginDrinksDetails:ginDrinksDetailsArray
-            }))
-          })
-      }
-    } else{
-      return (this.setState({
-        ginDrinksDetails:[]
-      }))
-}
+//     requestInfoGinDrinks(){
+//       const {idGin, idVodka} = this.state;
+//       if(idGin !== undefined && idGin.length > 0){
+//       for(let i= 0; i < idGin.length; i++){
+//         var apiRequest = fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idGin[i]}`).then(response => response.json())
+//           .then(data => {
+//           let ginDrinksDetailsArray = this.state.ginDrinksDetails;
+//           ginDrinksDetailsArray.push(data)
+//           //  console.log('Ok');
+//           //  console.log(this.state.ginDrinksDetails) //Para verificar que ginDetails ha cambiado
+//             return (this.setState({
+//               ginDrinksDetails:ginDrinksDetailsArray
+//             }))
+//           })
+//       }
+//     } else{
+//       return (this.setState({
+//         ginDrinksDetails:[]
+//       }))
+// }
+// }
+//
+// showArray(){
+//   if(this.state.ginDrinksDetails.length > 0){
+//
+//      return console.log(this.state.ginDrinksDetails[0]);
+//
+//
+// } else{
+//   return console.log('Array ginDrinksDetails apparentemente vacío');
+// }
+// }
+// warn(){
+//   if(this.state.ginDrinksDetails.length > 0){
+//
+//     console.log('Ok');
+//
+//
+// } else{
+//   return console.log('Array ginDrinksDetails vacío');
+// }
+// }
+
+requestInfoGinDrinks(){
+  const idGin = this.state.idGin;
+
+  if(idGin !== undefined && idGin.length > 0) {
+    var fetchsArray = [];
+    for(let i= 0; i < idGin.length; i++){
+      fetchsArray.push(fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idGin[i]}`)
+                        .then(response => response.json()));
+    }
+
+    Promise.all(fetchsArray)
+    .then(data => {
+      var ginDrinksDetailsArray= this.state.ginDrinksDetails;
+      ginDrinksDetailsArray.push(data);
+      this.setState({
+        ginDrinksDetails : ginDrinksDetailsArray
+      });
+    });
+  } else {
+    this.setState({
+      ginDrinksDetails : []
+    });
+  }
 }
 
 
 requestInfoVodkaDrinks(){
   const idVodka = this.state.idVodka;
-  if(idVodka !== undefined && idVodka.length > 0){
-  for(let i= 0; i < idVodka.length; i++){
-    var apiRequest = fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idVodka[i]}`).then(response => response.json())
-      .then(data => {
-      let vodkaDrinksDetailsArray = this.state.vodkaDrinksDetails;
-      vodkaDrinksDetailsArray.push(data)
-        console.log('Ok');
-        console.log(this.state.vodkaDrinksDetails) //Para verificar que vodkaDetails ha cambiado
-        return (this.setState({
-          vodkaDrinksDetails:vodkaDrinksDetailsArray
-        }))
-      })
+
+  if(idVodka !== undefined && idVodka.length > 0) {
+    var fetchsArray = [];
+    for(let i= 0; i < idVodka.length; i++){
+      fetchsArray.push(fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idVodka[i]}`)
+                        .then(response => response.json()));
+    }
+
+    Promise.all(fetchsArray)
+    .then(data => {
+      var vodkaDrinksDetailsArray= this.state.vodkaDrinksDetails;
+      vodkaDrinksDetailsArray.push(data);
+      this.setState({
+        vodkaDrinksDetails : vodkaDrinksDetailsArray
+      });
+    });
+  } else {
+    this.setState({
+      vodkaDrinksDetails : []
+    });
   }
-} else{
-  return (this.setState({
-    codkaDrinksDetails:[]
-  }))
-}
 }
 
     requestInfo() {

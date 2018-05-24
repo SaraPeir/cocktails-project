@@ -56,7 +56,8 @@ class Alcolic extends Component {
         <select className="select-style"><option>Vodka cocktails</option>{this.createVodkaOptions()}</select>
         <select className="select-style"><option>Rhum cocktails</option>{this.createRhumOptions()}</select>
       </div>
-      <div className="cocktail-wrapper hidden">
+
+      <div className="cocktail-wrapper">
           Hola
       </div>
 
