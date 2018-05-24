@@ -1,5 +1,5 @@
 .component-wrapper{
-width: 80%;
+width: 30%;
 z-index: 100;
 display: flex;
 flex-direction: row;
@@ -18,7 +18,7 @@ justify-content: flex-start;
 }
 
 .select-wrapper{
-  width: 30%;
+  width: 100%;
   margin: 20px;
   text-align: left;
   padding: 10px;
@@ -36,9 +36,11 @@ justify-content: flex-start;
   font-weight: bold;
 }*/
 
-.cocktail-wrapper{
+.gin-cocktail-wrapper{
 width: 50%;
 background: red;
+position: relative;
+left: 100px;
 }
 
 .alcolic-page-background{
@@ -70,6 +72,7 @@ background: red;
   flex-wrap: nowrap;
   background: #E9967A;
   opacity: 0.4;
+  border-radius: 10px;
   transition: all 1s ease;
 }
 

@@ -26,7 +26,9 @@ class App extends Component {
   filteredArray: [],
   ginSelectValue: 'Gin cocktails',
   vodkaSelectValue: 'Vodka cocktails',
-  rhumSelectValue: 'Rhum cocktails'
+  rhumSelectValue: 'Rhum cocktails',
+  gHidden: 'hidden',
+  ginDrinkName: ''
   }
   this.requestInfoGinDrinks = this.requestInfoGinDrinks.bind(this);
   this.requestInfoVodkaDrinks = this.requestInfoVodkaDrinks.bind(this);
@@ -115,11 +117,9 @@ requestInfoVodkaDrinks(){
 
     resetGinSelect(event){
       this.setState({
-      ginSelectValue: 'Gin cocktails' //recoje el valor de la opción inicial
+      ginSelectValue: 'Gin cocktails', //recoje el valor de la opción inicial
+      gHidden: 'hidden'
       });
-
-
-
     }
 
       resetVodkaSelect(event){
@@ -150,12 +150,15 @@ requestInfoVodkaDrinks(){
             return ginDrink.drinks[0].strDrink === selectedDrink;});
 
                 this.setState({
-                  filteredArray:filtered
+                  filteredArray:filtered,
+                  gHidden: '',
+                  ginDrinkName: selectedDrink
                 });
 
     } else if(selectedDrink == 'Gin cocktails'){
       this.setState({
-        filteredArray:[]
+        filteredArray:[],
+        gHidden: 'hidden'
       });
 }
 
@@ -198,7 +201,7 @@ requestInfoVodkaDrinks(){
         <div className="app">
         <Switch>
         <Route exact path='/' component={ Hero } />
-        <Route path='/alcolic' render={(props) => <Alcolic {...props} array={this.state.data} gSelectValue={this.state.ginSelectValue} onChangeGinSelectValue= {this.changeGinSelectValue} vSelectValue={this.state.vodkaSelectValue} onChangeVodkaSelectValue={this.changeVodkaSelectValue} rSelectValue={this.state.rhumSelectValue} onChangeRhumSelectValue={this.changeRhumSelectValue} />}/>
+        <Route path='/alcolic' render={(props) => <Alcolic {...props} array={this.state.data} gSelectValue={this.state.ginSelectValue} onChangeGinSelectValue= {this.changeGinSelectValue} vSelectValue={this.state.vodkaSelectValue} onChangeVodkaSelectValue={this.changeVodkaSelectValue} rSelectValue={this.state.rhumSelectValue} onChangeRhumSelectValue={this.changeRhumSelectValue} diplNone = {this.state.gHidden} drinkName={this.state.ginDrinkName} />}/>
         <Route path='/analcolic' component={ Analcolic } />
         </Switch>
         </div>
