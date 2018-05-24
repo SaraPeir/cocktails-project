@@ -23,56 +23,23 @@ class App extends Component {
   idVodka: [],
   ginDrinksDetails: [],
   vodkaDrinksDetails: [],
-  ginSelectValue: '',
+  ginSelectValue: '',  //coje el valor de la opción inicial
   vodkaSelectValue: '',
   rhumSelectValue: ''
   }
   this.requestInfoGinDrinks = this.requestInfoGinDrinks.bind(this);
   this.requestInfoVodkaDrinks = this.requestInfoVodkaDrinks.bind(this);
+
+  this.resetGinSelect = this.resetGinSelect.bind(this);
+  this.resetVodkaSelect = this.resetVodkaSelect.bind(this);
+  this.resetRhumSelect = this.resetRhumSelect.bind(this);
+
+  this.changeGinSelectValue = this.changeGinSelectValue.bind(this);
+  this.changeVodkaSelectValue = this.changeVodkaSelectValue.bind(this);
+  this.changeRhumSelectValue = this.changeRhumSelectValue.bind(this);
   }
 
-//     requestInfoGinDrinks(){
-//       const {idGin, idVodka} = this.state;
-//       if(idGin !== undefined && idGin.length > 0){
-//       for(let i= 0; i < idGin.length; i++){
-//         var apiRequest = fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idGin[i]}`).then(response => response.json())
-//           .then(data => {
-//           let ginDrinksDetailsArray = this.state.ginDrinksDetails;
-//           ginDrinksDetailsArray.push(data)
-//           //  console.log('Ok');
-//           //  console.log(this.state.ginDrinksDetails) //Para verificar que ginDetails ha cambiado
-//             return (this.setState({
-//               ginDrinksDetails:ginDrinksDetailsArray
-//             }))
-//           })
-//       }
-//     } else{
-//       return (this.setState({
-//         ginDrinksDetails:[]
-//       }))
-// }
-// }
-//
-// showArray(){
-//   if(this.state.ginDrinksDetails.length > 0){
-//
-//      return console.log(this.state.ginDrinksDetails[0]);
-//
-//
-// } else{
-//   return console.log('Array ginDrinksDetails apparentemente vacío');
-// }
-// }
-// warn(){
-//   if(this.state.ginDrinksDetails.length > 0){
-//
-//     console.log('Ok');
-//
-//
-// } else{
-//   return console.log('Array ginDrinksDetails vacío');
-// }
-// }
+
 
 requestInfoGinDrinks(){
   const idGin = this.state.idGin;
@@ -145,6 +112,48 @@ requestInfoVodkaDrinks(){
     })
     }
 
+    resetGinSelect(event){
+      this.setState({
+      ginSelectValue: '' //recoje el valor de la opción inicial
+      });
+    }
+
+      resetVodkaSelect(event){
+        this.setState({
+        vodkaSelectValue: ''
+        });
+      }
+
+      resetRhumSelect(event){
+        this.setState({
+        rhumSelectValue: ''
+        });
+      }
+
+    changeGinSelectValue(event){
+      this.setState({
+      ginSelectValue: event.target.value
+      });
+    this.resetVodkaSelect();
+    this.resetRhumSelect();
+}
+
+    changeVodkaSelectValue(event){
+      this.setState({
+      vodkaSelectValue: event.target.value
+      });
+    this.resetGinSelect();
+    this.resetRhumSelect();
+    }
+
+    changeRhumSelectValue(event){
+      this.setState({
+      rhumSelectValue: event.target.value
+      });
+    this.resetGinSelect();
+    this.resetVodkaSelect();
+    }
+
 
     componentDidMount(){
     this.requestInfo();
@@ -155,7 +164,7 @@ requestInfoVodkaDrinks(){
         <div className="app">
         <Switch>
         <Route exact path='/' component={ Hero } />
-        <Route path='/alcolic' render={(props) => <Alcolic {...props} array={this.state.data}/>}/>
+        <Route path='/alcolic' render={(props) => <Alcolic {...props} array={this.state.data} gSelectValue={this.state.ginSelectValue} onChangeGinSelectValue= {this.changeGinSelectValue} vSelectValue={this.state.vodkaSelectValue} onChangeVodkaSelectValue={this.changeVodkaSelectValue} rSelectValue={this.state.rhumSelectValue} onChangeRhumSelectValue={this.changeRhumSelectValue} />}/>
         <Route path='/analcolic' component={ Analcolic } />
         </Switch>
         </div>
