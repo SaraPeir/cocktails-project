@@ -42,8 +42,23 @@ class Alcolic extends Component {
 
     return (
 <div>
+
 <div className="alcolic-page-background">
 </div>
+
+
+<div className="backhome-whole-box">
+  <div className="backhome-items-box">
+    <div className="backhome-item">
+    <Link to={`/`} style={{ textDecoration: 'none', color: 'white', textAlign: 'center'}}>
+      <p>Home</p>
+    </Link>
+    </div>
+</div>
+</div>
+
+
+
 
 
     <div className="component-wrapper">
@@ -52,17 +67,17 @@ class Alcolic extends Component {
       <Link to={`/`} style={{ textDecoration: 'none', color: 'white', textAlign: 'center'}}>
         <button className="to-home-button"> Home </button>
       </Link>
-        <select className="select-style"> <option>Gin cocktails</option> {this.createGinOptions()}</select>
-        <select className="select-style"><option>Vodka cocktails</option>{this.createVodkaOptions()}</select>
-        <select className="select-style"><option>Rhum cocktails</option>{this.createRhumOptions()}</select>
+        <select className="select-style" value={this.props.gSelectValue} onChange={this.props.onChangeGinSelectValue}> <option>Gin cocktails</option> {this.createGinOptions()}</select>
+        <select className="select-style" value={this.props.vSelectValue} onChange={this.props.onChangeVodkaSelectValue}><option>Vodka cocktails</option>{this.createVodkaOptions()}</select>
+        <select className="select-style" value={this.props.rSelectValue} onChange={this.props.onChangeRhumSelectValue}><option>Rhum cocktails</option>{this.createRhumOptions()}</select>
       </div>
-
       <div className="cocktail-wrapper">
           Hola
       </div>
-
-
 </div>
+
+
+
 </div>
     );
   }

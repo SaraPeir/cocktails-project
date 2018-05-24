@@ -22,7 +22,10 @@ class App extends Component {
   idGin: [],
   idVodka: [],
   ginDrinksDetails: [],
-  vodkaDrinksDetails: []
+  vodkaDrinksDetails: [],
+  ginSelectValue: '',
+  vodkaSelectValue: '',
+  rhumSelectValue: ''
   }
   this.requestInfoGinDrinks = this.requestInfoGinDrinks.bind(this);
   this.requestInfoVodkaDrinks = this.requestInfoVodkaDrinks.bind(this);
