@@ -72,10 +72,17 @@ class Alcolic extends Component {
 
 </div>
 
-<div className={`gin-cocktail-wrapper ${this.props.diplNone}`}>
-    {this.props.drinkName}
+<div className={`gin-cocktail-wrapper ${this.props.gDisplNone}`}>
+    {this.props.ginDrinkName}
 </div>
 
+<div className={`vodka-cocktail-wrapper ${this.props.vDisplNone}`}>
+    {this.props.vodkaDrinkName}
+</div>
+
+<div className={`rhum-cocktail-wrapper ${this.props.rDisplNone}`}>
+    {this.props.rhumDrinkName}
+</div>
 
 
 </div>
@@ -84,3 +91,7 @@ class Alcolic extends Component {
 }
 
 export default Alcolic;
+
+// <div className={`vodka-cocktail-wrapper ${this.props.vDisplNone}`}>
+//     {this.props.vodkaDrinkName}
+// </div>

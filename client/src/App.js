@@ -19,16 +19,28 @@ class App extends Component {
   super(props);
   this.state = {
   data: [],
+
   idGin: [],
   idVodka: [],
+
   ginDrinksDetails: [],
   vodkaDrinksDetails: [],
-  filteredArray: [],
+
+  ginFilteredArray: [],
+  vodkaFilteredArray: [],
+
   ginSelectValue: 'Gin cocktails',
   vodkaSelectValue: 'Vodka cocktails',
   rhumSelectValue: 'Rhum cocktails',
+
   gHidden: 'hidden',
-  ginDrinkName: ''
+  ginDrinkName: '',
+
+  vHidden: 'hidden',
+  vodkaDrinkName: '',
+
+  rHidden: 'hidden',
+  rhumDrinkName: ''
   }
   this.requestInfoGinDrinks = this.requestInfoGinDrinks.bind(this);
   this.requestInfoVodkaDrinks = this.requestInfoVodkaDrinks.bind(this);
@@ -117,20 +129,22 @@ requestInfoVodkaDrinks(){
 
     resetGinSelect(event){
       this.setState({
-      ginSelectValue: 'Gin cocktails', //recoje el valor de la opción inicial
+      ginSelectValue: 'Gin cocktails',
       gHidden: 'hidden'
       });
     }
 
       resetVodkaSelect(event){
         this.setState({
-        vodkaSelectValue: 'Vodka cocktails'
+        vodkaSelectValue: 'Vodka cocktails',
+        vHidden: 'hidden'
         });
       }
 
       resetRhumSelect(event){
         this.setState({
-        rhumSelectValue: 'Rhum cocktails'
+        rhumSelectValue: 'Rhum cocktails',
+        rHidden: 'hidden'
         });
       }
 
@@ -138,49 +152,56 @@ requestInfoVodkaDrinks(){
       this.setState({
       ginSelectValue: event.target.value
       });
-    this.resetVodkaSelect();
-    this.resetRhumSelect();
+      this.resetVodkaSelect();
+      this.resetRhumSelect();
 
-          //const ginDrinksDetails = this.state.ginDrinksDetails[0][0].drinks;
-          const ginDrinksDetails = this.state.ginDrinksDetails;
-          let selectedDrink = event.target.value;
+      const ginDrinksDetails = this.state.ginDrinksDetails;
+      let selectedDrink = event.target.value;
 
-          if(ginDrinksDetails !== undefined && ginDrinksDetails.length > 0 && selectedDrink !== 'Gin cocktails'){
-            let filtered =ginDrinksDetails[0].filter(function(ginDrink, index) {
+      if(ginDrinksDetails !== undefined && ginDrinksDetails.length > 0 && selectedDrink !== 'Gin cocktails'){
+          let filtered =ginDrinksDetails[0].filter(function(ginDrink, index) {
             return ginDrink.drinks[0].strDrink === selectedDrink;});
-
                 this.setState({
-                  filteredArray:filtered,
+                  ginFilteredArray:filtered,
                   gHidden: '',
                   ginDrinkName: selectedDrink
                 });
 
-    } else if(selectedDrink == 'Gin cocktails'){
-      this.setState({
-        filteredArray:[],
-        gHidden: 'hidden'
-      });
-}
+          } else if(selectedDrink == 'Gin cocktails'){
+            this.setState({
+              ginFilteredArray:[],
+              gHidden: 'hidden'
+            });
+          }
+      }
 
-}
+      changeVodkaSelectValue(event){
+        this.setState({
+        vodkaSelectValue: event.target.value
+        });
+        this.resetGinSelect();
+        this.resetRhumSelect();
 
+        const vodkaDrinksDetails = this.state.vodkaDrinksDetails;
+        let selectedDrink = event.target.value;
 
-// ginDrinksDetailsArray[0].filter(function(ginDrink, index) {
-// return ginDrink.drinks[0].strDrink === "Abbey Martini";})
+        if(vodkaDrinksDetails !== undefined && vodkaDrinksDetails.length > 0 && selectedDrink !== 'Vodka cocktails'){
+            let filtered =vodkaDrinksDetails[0].filter(function(vodkaDrink, index) {
+              return vodkaDrink.drinks[0].strDrink === selectedDrink;});
+                  this.setState({
+                    vodkaFilteredArray:filtered,
+                    vHidden: '',
+                    vodkaDrinkName: selectedDrink
+                  });
 
-// ginDrinksDetailsArray[0][0].drinks.filter(function(ginDrink, index) {
-//                 return ginDrink.strDrink === "Abbey Martini";})
+            } else if(selectedDrink == 'Vodka cocktails'){
+              this.setState({
+                vodkaFilteredArray:[],
+                vHidden: 'hidden'
+              });
+            }
+        }
 
-//ginDrinksDetailsArray[0].filter(function(ginDrink, index) {
-//                 return ginDrink.drinks[0].strDrink === "Abbey Martini";})
-
-    changeVodkaSelectValue(event){
-      this.setState({
-      vodkaSelectValue: event.target.value
-      });
-    this.resetGinSelect();
-    this.resetRhumSelect();
-    }
 
     changeRhumSelectValue(event){
       this.setState({
@@ -201,7 +222,9 @@ requestInfoVodkaDrinks(){
         <div className="app">
         <Switch>
         <Route exact path='/' component={ Hero } />
-        <Route path='/alcolic' render={(props) => <Alcolic {...props} array={this.state.data} gSelectValue={this.state.ginSelectValue} onChangeGinSelectValue= {this.changeGinSelectValue} vSelectValue={this.state.vodkaSelectValue} onChangeVodkaSelectValue={this.changeVodkaSelectValue} rSelectValue={this.state.rhumSelectValue} onChangeRhumSelectValue={this.changeRhumSelectValue} diplNone = {this.state.gHidden} drinkName={this.state.ginDrinkName} />}/>
+        <Route path='/alcolic' render={(props) => <Alcolic {...props} array={this.state.data} gSelectValue={this.state.ginSelectValue} onChangeGinSelectValue= {this.changeGinSelectValue} vSelectValue={this.state.vodkaSelectValue} onChangeVodkaSelectValue={this.changeVodkaSelectValue} rSelectValue={this.state.rhumSelectValue} onChangeRhumSelectValue={this.changeRhumSelectValue} gDisplNone = {this.state.gHidden} ginDrinkName={this.state.ginDrinkName}
+        vDisplNone = {this.state.vHidden} vodkaDrinkName={this.state.vodkaDrinkName}
+         />}/>
         <Route path='/analcolic' component={ Analcolic } />
         </Switch>
         </div>
@@ -209,6 +232,7 @@ requestInfoVodkaDrinks(){
   }
   }
 
+//vDisplNone = {this.state.vHidden} vodkaDrinkName={this.state.vodkaDrinkName}
 
 
   export default App
