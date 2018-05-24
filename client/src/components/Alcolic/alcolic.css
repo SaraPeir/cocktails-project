@@ -1,5 +1,5 @@
 .component-wrapper{
-width: 30%;
+width: 100%;
 z-index: 100;
 display: flex;
 flex-direction: row;
@@ -18,23 +18,36 @@ justify-content: flex-start;
 }
 
 .select-wrapper{
-  width: 100%;
+  width: 50%;
   margin: 20px;
   text-align: left;
   padding: 10px;
-  background: #E9967A;
   padding-bottom: 30px;
 }
 
 .select-style{
   display: block;
   margin: 10px;
+  background: #98FB98;
+  border: 2px solid #E9967A;
+  font-family: 'EB Garamond', serif;
+  font-size: 20px;
+
 }
+
+/*font-family: 'Lobster', cursive;
+font-family: 'EB Garamond', serif;*/
 
 /*.to-home-button:hover{
   font-size: 20px;
   font-weight: bold;
 }*/
+
+.title{
+  font-family: 'Lobster', cursive;
+  font-size: 80px;
+  color: #E9967A;
+}
 
 .gin-cocktail-wrapper{
 width: 50%;
@@ -84,7 +97,7 @@ left: 100px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  background: #E9967A;
+  background: #98FB98;
   opacity: 0.4;
   border-radius: 10px;
   transition: all 1s ease;
@@ -100,13 +113,14 @@ left: 100px;
 
 .backhome-item{
   width: 100%;
-  color: #fff;
+  color: #E9967A;
   opacity: 1;
   height: 100px;
-  line-height: 70px;
-  font-size: 20px;
+  line-height: 50px;
+  font-size: 30px;
   font-weight: bold;
   transition: all 1s ease;
+
 }
 
 

@@ -55,6 +55,7 @@ class Alcolic extends Component {
       <p>Home</p>
     </Link>
     </div>
+
 </div>
 </div>
 
@@ -65,6 +66,7 @@ class Alcolic extends Component {
     <div className="component-wrapper">
 
       <div className="select-wrapper">
+        <div className ="title">Alcolic drinks</div>
         <select className="select-style" value={this.props.gSelectValue} onChange={this.props.onChangeGinSelectValue}> <option>Gin cocktails</option> {this.createGinOptions()}</select>
         <select className="select-style" value={this.props.vSelectValue} onChange={this.props.onChangeVodkaSelectValue}><option>Vodka cocktails</option>{this.createVodkaOptions()}</select>
         <select className="select-style" value={this.props.rSelectValue} onChange={this.props.onChangeRhumSelectValue}><option>Rhum cocktails</option>{this.createRhumOptions()}</select>
