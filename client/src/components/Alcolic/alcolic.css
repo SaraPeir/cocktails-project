@@ -57,9 +57,13 @@ background: red;
   display: none;
 }
 
+.getTransparence{
+  opacity: 0.3;
+}
+
 
 .backhome-whole-box{
-  width: 20%;
+  width: 10%;
   height: 100px;
   display: flex;
   flex-direction: row;

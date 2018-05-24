@@ -23,9 +23,10 @@ class App extends Component {
   idVodka: [],
   ginDrinksDetails: [],
   vodkaDrinksDetails: [],
-  ginSelectValue: '',  //coje el valor de la opción inicial
-  vodkaSelectValue: '',
-  rhumSelectValue: ''
+  filteredArray: [],
+  ginSelectValue: 'Gin cocktails',
+  vodkaSelectValue: 'Vodka cocktails',
+  rhumSelectValue: 'Rhum cocktails'
   }
   this.requestInfoGinDrinks = this.requestInfoGinDrinks.bind(this);
   this.requestInfoVodkaDrinks = this.requestInfoVodkaDrinks.bind(this);
@@ -114,19 +115,22 @@ requestInfoVodkaDrinks(){
 
     resetGinSelect(event){
       this.setState({
-      ginSelectValue: '' //recoje el valor de la opción inicial
+      ginSelectValue: 'Gin cocktails' //recoje el valor de la opción inicial
       });
+
+
+
     }
 
       resetVodkaSelect(event){
         this.setState({
-        vodkaSelectValue: ''
+        vodkaSelectValue: 'Vodka cocktails'
         });
       }
 
       resetRhumSelect(event){
         this.setState({
-        rhumSelectValue: ''
+        rhumSelectValue: 'Rhum cocktails'
         });
       }
 
@@ -136,7 +140,36 @@ requestInfoVodkaDrinks(){
       });
     this.resetVodkaSelect();
     this.resetRhumSelect();
+
+          //const ginDrinksDetails = this.state.ginDrinksDetails[0][0].drinks;
+          const ginDrinksDetails = this.state.ginDrinksDetails;
+          let selectedDrink = event.target.value;
+
+          if(ginDrinksDetails !== undefined && ginDrinksDetails.length > 0 && selectedDrink !== 'Gin cocktails'){
+            let filtered =ginDrinksDetails[0].filter(function(ginDrink, index) {
+            return ginDrink.drinks[0].strDrink === selectedDrink;});
+
+                this.setState({
+                  filteredArray:filtered
+                });
+
+    } else if(selectedDrink == 'Gin cocktails'){
+      this.setState({
+        filteredArray:[]
+      });
 }
+
+}
+
+
+// ginDrinksDetailsArray[0].filter(function(ginDrink, index) {
+// return ginDrink.drinks[0].strDrink === "Abbey Martini";})
+
+// ginDrinksDetailsArray[0][0].drinks.filter(function(ginDrink, index) {
+//                 return ginDrink.strDrink === "Abbey Martini";})
+
+//ginDrinksDetailsArray[0].filter(function(ginDrink, index) {
+//                 return ginDrink.drinks[0].strDrink === "Abbey Martini";})
 
     changeVodkaSelectValue(event){
       this.setState({
@@ -153,6 +186,7 @@ requestInfoVodkaDrinks(){
     this.resetGinSelect();
     this.resetVodkaSelect();
     }
+
 
 
     componentDidMount(){
