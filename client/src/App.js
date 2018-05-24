@@ -28,6 +28,7 @@ class App extends Component {
 
   ginFilteredArray: [],
   vodkaFilteredArray: [],
+  rhumFilteredArray: [],
 
   ginSelectValue: 'Gin cocktails',
   vodkaSelectValue: 'Vodka cocktails',
@@ -209,6 +210,26 @@ requestInfoVodkaDrinks(){
       });
     this.resetGinSelect();
     this.resetVodkaSelect();
+
+
+    const rhumDrinksDetails = this.state.data;
+    let selectedDrink = event.target.value;
+
+    if(rhumDrinksDetails !== undefined && rhumDrinksDetails.length > 0 && selectedDrink !== 'Rhum cocktails'){
+        let filtered =rhumDrinksDetails[0][3].filter(function(rhumDrink, index) {
+          return rhumDrink.name === 'WIKI WIKI';});
+              this.setState({
+                rhumFilteredArray:filtered,
+                rHidden: '',
+                rhumDrinkName: selectedDrink
+              });
+
+        } else if(selectedDrink == 'Rhum cocktails'){
+          this.setState({
+            rhumFilteredArray:[],
+            rHidden: 'hidden'
+          });
+        }
     }
 
 
@@ -224,6 +245,7 @@ requestInfoVodkaDrinks(){
         <Route exact path='/' component={ Hero } />
         <Route path='/alcolic' render={(props) => <Alcolic {...props} array={this.state.data} gSelectValue={this.state.ginSelectValue} onChangeGinSelectValue= {this.changeGinSelectValue} vSelectValue={this.state.vodkaSelectValue} onChangeVodkaSelectValue={this.changeVodkaSelectValue} rSelectValue={this.state.rhumSelectValue} onChangeRhumSelectValue={this.changeRhumSelectValue} gDisplNone = {this.state.gHidden} ginDrinkName={this.state.ginDrinkName}
         vDisplNone = {this.state.vHidden} vodkaDrinkName={this.state.vodkaDrinkName}
+        rDisplNone = {this.state.rHidden} rhumDrinkName={this.state.rhumDrinkName}
          />}/>
         <Route path='/analcolic' component={ Analcolic } />
         </Switch>
@@ -232,8 +254,6 @@ requestInfoVodkaDrinks(){
   }
   }
 
-//vDisplNone = {this.state.vHidden} vodkaDrinkName={this.state.vodkaDrinkName}
-
 
   export default App
 
@@ -241,42 +261,3 @@ requestInfoVodkaDrinks(){
   // <Route path='/analcolic' render={(props) => <Analcolic {...props} array={this.state.data}/>}/>
   // <Route exact path='/' component={ Alcolic } />
   // <Route path='/analcolic' component={ Analcolic } />
-
-
-
-
-
-
-
-
-
-//requestInfo() {
-//     var apiAlcoholicCocktails =  fetch('/api/alcolic').then(response => response.json());
-//     var apiNotAlcoholicCocktails = fetch('/api/analcolic').then(response => response.json());
-//     var combinedData = [apiAlcoholicCocktails, apiNotAlcoholicCocktails];
-//     Promise.all(combinedData).then(c => {
-//     let allCocktailsData = this.state.data;
-//     allCocktailsData.push(c);
-//     this.setState({
-//       data:allCocktailsData
-//     });
-//   })
-//   }
-//
-//
-//   componentDidMount(){
-//   this.requestInfo();
-//   }
-//
-//   render () {
-//     return (
-//       <div>
-//       <Hero />
-//       <Switch>
-//       <Route exact path='/' render={(props) => <Alcolic {...props} array={this.state.data}/>}/>
-//       <Route path='/analcolic' component={ Analcolic } />
-//       </Switch>
-//       </div>
-//     );
-// }
-// }

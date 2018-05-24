@@ -91,7 +91,3 @@ class Alcolic extends Component {
 }
 
 export default Alcolic;
-
-// <div className={`vodka-cocktail-wrapper ${this.props.vDisplNone}`}>
-//     {this.props.vodkaDrinkName}
-// </div>

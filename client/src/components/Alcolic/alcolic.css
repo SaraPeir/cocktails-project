@@ -50,6 +50,13 @@ position: relative;
 left: 100px;
 }
 
+.rhum-cocktail-wrapper{
+width: 50%;
+background: pink;
+position: relative;
+left: 100px;
+}
+
 .alcolic-page-background{
   width: 100%;
   height: 100vh;
