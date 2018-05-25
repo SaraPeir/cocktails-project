@@ -43,6 +43,7 @@ padding: 20px;
   color: #E9967A;
   position: relative;
   left: 12%;
+  width: 50%;
 }
 
 
@@ -83,7 +84,7 @@ flex-direction: column;
 
 
 .alcolic-page-background{
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   z-index: -100;
   /*opacity: 0.3;*/

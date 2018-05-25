@@ -110,7 +110,7 @@ class Alcolic extends Component {
                   {this.props.rhumDrinkName}
                 </div>
                 <div className="item-wrapper">
-                  <img className="drink-img" src={`${this.props.rDrinkPhoto}`} alt="" />
+                  <img height="300px"  src={`${this.props.rDrinkPhoto}`} alt="" />
                 </div>
                 <div className="item-wrapper" id="type3">
                   <p>{this.props.rDrinkIngredients}</p>
