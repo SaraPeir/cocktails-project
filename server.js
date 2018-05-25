@@ -4,9 +4,11 @@ const app = express();
 
 app.get('/api/rhum', (req, res) => {
   const rhum = [
-    { name: 'Tortuga', ingredient1: 'El Dorado 8yr Rum (2 oz)', ingredient2: 'cinnamon powder (dash)', ingredient3: 'orange juice (dash)', ingredient4: 'lemon juice (dash)', ingredient5: 'simple syrup (0.5 oz)', recipe: 'Shake ingredients with ice. Strain over fresh ice into a rocks glass. Garnish with candied ginger on a skewer.' },
-    { name: 'WIKI WIKI', ingredient1: 'Blanc Rhum Agricole (1.5 oz)', ingredient2: 'mango brandy (0.5 oz)', ingredient3: 'fresh lime juice (1 oz)', ingredient4: 'fresh pineapple juice (1 oz)', ingredient5: 'petite cane syrup (0.5 oz)', ingredient6: '1/2 peeled kiwi', recipe: 'Muddle kiwi in tall glass, add liquid ingredients. Insert swizzle stick, add crushed ice, swizzle. Garnish with pineapple crescent, pineapple fronds, lime wheel, kiwi slice, and orchid.' }
+    {name: 'Tortuga', ingredients: 'El Dorado 8yr Rum (2 oz), cinnamon powder (dash), orange juice (dash), lemon juice (dash), simple syrup (0.5 oz)', recipe: 'Shake ingredients with ice. Strain over fresh ice into a rocks glass. Garnish with candied ginger on a skewer.', imgsrc: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/rh-tortuga-wagtouicz-04-1505859243.jpg?crop=0.447xw:1.00xh;0.230xw,0&resize=980:*' },
+    {name: 'WIKI WIKI', ingredients: 'Blanc Rhum Agricole (1.5 oz), mango brandy (0.5 oz), fresh lime juice (1 oz), fresh pineapple juice (1 oz), petite cane syrup (0.5 oz), 1/2 peeled kiwi', recipe: 'Muddle kiwi in tall glass, add liquid ingredients. Insert swizzle stick, add crushed ice, swizzle. Garnish with pineapple crescent, pineapple fronds, lime wheel, kiwi slice, and orchid.', imgsrc: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/wikiwiki-threedots-horiz-1501794238.jpg?crop=0.447xw:1.00xh;0.187xw,0&resize=980:*' }
   ];
+
+
 
   res.json(rhum);
 });
@@ -49,3 +51,20 @@ app.get('/api/alcolic', (req, res) => {
 const port = 5000;
 
 app.listen(port, () => `Server running on port ${port}`);
+
+
+
+// const rhum = [
+//   { name: 'Tortuga', ingredient1: 'El Dorado 8yr Rum (2 oz)', ingredient2: 'cinnamon powder (dash)', ingredient3: 'orange juice (dash)', ingredient4: 'lemon juice (dash)', ingredient5: 'simple syrup (0.5 oz)', recipe: 'Shake ingredients with ice. Strain over fresh ice into a rocks glass. Garnish with candied ginger on a skewer.' },
+//   { name: 'WIKI WIKI', ingredient1: 'Blanc Rhum Agricole (1.5 oz)', ingredient2: 'mango brandy (0.5 oz)', ingredient3: 'fresh lime juice (1 oz)', ingredient4: 'fresh pineapple juice (1 oz)', ingredient5: 'petite cane syrup (0.5 oz)', ingredient6: '1/2 peeled kiwi', recipe: 'Muddle kiwi in tall glass, add liquid ingredients. Insert swizzle stick, add crushed ice, swizzle. Garnish with pineapple crescent, pineapple fronds, lime wheel, kiwi slice, and orchid.' }
+// ];
+
+//
+// const rhum = [
+//   [{name: 'Tortuga'}, {ingredients: ['El Dorado 8yr Rum (2 oz)','cinnamon powder (dash)', 'orange juice (dash)', 'lemon juice (dash)', 'simple syrup (0.5 oz)']}, {recipe: 'Shake ingredients with ice. Strain over fresh ice into a rocks glass. Garnish with candied ginger on a skewer.' }],
+//   [{name: 'WIKI WIKI'}, {ingredients: ['Blanc Rhum Agricole (1.5 oz)', 'mango brandy (0.5 oz)', 'fresh lime juice (1 oz)', 'fresh pineapple juice (1 oz)', 'petite cane syrup (0.5 oz)', '1/2 peeled kiwi']}, {recipe: 'Muddle kiwi in tall glass, add liquid ingredients. Insert swizzle stick, add crushed ice, swizzle. Garnish with pineapple crescent, pineapple fronds, lime wheel, kiwi slice, and orchid.' }]
+// ];
+
+
+
+// ];

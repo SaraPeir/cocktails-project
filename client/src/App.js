@@ -18,54 +18,55 @@ class App extends Component {
   constructor(props) {
   super(props);
   this.state = {
-  data: [],
+    data: [],
 
-  idGin: [],
-  idVodka: [],
+    idGin: [],
+    idVodka: [],
 
-  ginDrinksDetails: [],
-  vodkaDrinksDetails: [],
+    ginDrinksDetails: [],
+    vodkaDrinksDetails: [],
 
-  ginFilteredArray: [],
-  vodkaFilteredArray: [],
-  rhumFilteredArray: [],
+    ginFilteredArray: [],
+    vodkaFilteredArray: [],
+    rhumFilteredArray: [],
 
-  ginSelectValue: 'Gin cocktails',
-  vodkaSelectValue: 'Vodka cocktails',
-  rhumSelectValue: 'Rhum cocktails',
+    ginSelectValue: 'Gin cocktails',
+    vodkaSelectValue: 'Vodka cocktails',
+    rhumSelectValue: 'Rhum cocktails',
 
-  gHidden: 'hidden',
-  ginDrinkName: '',
-  ginDrinkPhoto: '',
-  ginDrinkRecipe: '',
-  ginDrinkIngredients: '',
-  ginDrinkMeasures: '',
+    gHidden: 'hidden',
+    ginDrinkName: '',
+    ginDrinkPhoto: '',
+    ginDrinkRecipe: '',
+    ginDrinkIngredients: '',
+    ginDrinkMeasures: '',
 
 
 
-  vHidden: 'hidden',
-  vodkaDrinkName: '',
-  vodkaDrinkPhoto: '',
-  vodkaDrinkRecipe: '',
-  vodkaDrinkIngredients: '',
-  vodkaDrinkMeasures: '',
+    vHidden: 'hidden',
+    vodkaDrinkName: '',
+    vodkaDrinkPhoto: '',
+    vodkaDrinkRecipe: '',
+    vodkaDrinkIngredients: '',
+    vodkaDrinkMeasures: '',
 
-  rHidden: 'hidden',
-  rhumDrinkName: ''
+    rHidden: 'hidden',
+    rhumDrinkName: '',
+    rhumDrinkPhoto: '',
+    rhumDrinkRecipe: '',
+    rhumDrinkIngredients: ''
   }
-  this.requestInfoGinDrinks = this.requestInfoGinDrinks.bind(this);
-  this.requestInfoVodkaDrinks = this.requestInfoVodkaDrinks.bind(this);
+    this.requestInfoGinDrinks = this.requestInfoGinDrinks.bind(this);
+    this.requestInfoVodkaDrinks = this.requestInfoVodkaDrinks.bind(this);
 
-  this.resetGinSelect = this.resetGinSelect.bind(this);
-  this.resetVodkaSelect = this.resetVodkaSelect.bind(this);
-  this.resetRhumSelect = this.resetRhumSelect.bind(this);
+    this.resetGinSelect = this.resetGinSelect.bind(this);
+    this.resetVodkaSelect = this.resetVodkaSelect.bind(this);
+    this.resetRhumSelect = this.resetRhumSelect.bind(this);
 
-  this.changeGinSelectValue = this.changeGinSelectValue.bind(this);
-  this.changeVodkaSelectValue = this.changeVodkaSelectValue.bind(this);
-  this.changeRhumSelectValue = this.changeRhumSelectValue.bind(this);
+    this.changeGinSelectValue = this.changeGinSelectValue.bind(this);
+    this.changeVodkaSelectValue = this.changeVodkaSelectValue.bind(this);
+    this.changeRhumSelectValue = this.changeRhumSelectValue.bind(this);
   }
-
-
 
 requestInfoGinDrinks(){
   const idGin = this.state.idGin;
@@ -140,8 +141,8 @@ requestInfoVodkaDrinks(){
 
     resetGinSelect(event){
       this.setState({
-      ginSelectValue: 'Gin cocktails',
-      gHidden: 'hidden'
+        ginSelectValue: 'Gin cocktails',
+        gHidden: 'hidden'
       });
     }
 
@@ -203,8 +204,6 @@ requestInfoVodkaDrinks(){
         if(vodkaDrinksDetails !== undefined && vodkaDrinksDetails.length > 0 && selectedDrink !== 'Vodka cocktails'){
             let filtered =vodkaDrinksDetails[0].filter(function(vodkaDrink, index) {
               return vodkaDrink.drinks[0].strDrink === selectedDrink;});
-
-
                   this.setState({
                     vodkaFilteredArray:filtered,
                     vHidden: '',
@@ -212,11 +211,7 @@ requestInfoVodkaDrinks(){
                     vodkaDrinkPhoto: filtered[0].drinks[0].strDrinkThumb,
                     vodkaDrinkRecipe: filtered[0].drinks[0].strInstructions
                   });
-
             this.generateVodkaIngredientsArray()
-
-
-
             } else if(selectedDrink == 'Vodka cocktails'){
               this.setState({
                 vodkaFilteredArray:[],
@@ -335,8 +330,6 @@ requestInfoVodkaDrinks(){
           return measure !== ''  && measure !== ' ' && measure !== null && measure !== '↵';
         })
         console.log(actualVodkaMeasures);
-
-            //let ingredients = actualVodkaIngredients.map( (i, index) => <p key={index}> {i}</p>);
         let ingredients = actualVodkaIngredients.join();
         let measures = actualVodkaMeasures.join();
         console.log(ingredients);
@@ -349,25 +342,24 @@ requestInfoVodkaDrinks(){
       }
     }
 
-
     changeRhumSelectValue(event){
       this.setState({
-      rhumSelectValue: event.target.value
+        rhumSelectValue: event.target.value
       });
-    this.resetGinSelect();
-    this.resetVodkaSelect();
-
-
+      this.resetGinSelect();
+      this.resetVodkaSelect();
     const rhumDrinksDetails = this.state.data;
     let selectedDrink = event.target.value;
-
     if(rhumDrinksDetails !== undefined && rhumDrinksDetails.length > 0 && selectedDrink !== 'Rhum cocktails'){
         let filtered =rhumDrinksDetails[0][3].filter(function(rhumDrink, index) {
-          return rhumDrink.name === 'WIKI WIKI';});
+          return rhumDrink.name === selectedDrink;});
               this.setState({
                 rhumFilteredArray:filtered,
                 rHidden: '',
-                rhumDrinkName: selectedDrink
+                rhumDrinkName: selectedDrink,
+                rhumDrinkRecipe: filtered[0].recipe,
+                rhumDrinkIngredients: filtered[0].ingredients,
+                rhumDrinkPhoto: filtered[0].imgsrc
               });
 
         } else if(selectedDrink == 'Rhum cocktails'){
@@ -378,10 +370,8 @@ requestInfoVodkaDrinks(){
         }
     }
 
-
-
     componentDidMount(){
-    this.requestInfo();
+      this.requestInfo();
     }
 
     render () {
@@ -400,7 +390,10 @@ requestInfoVodkaDrinks(){
         vDrinkPhoto = {this.state.vodkaDrinkPhoto} vDrinkRecipe = {this.state.vodkaDrinkRecipe}
         vDrinkIngredients={this.state.vodkaDrinkIngredients} vDrinkMeasures={this.state.vodkaDrinkMeasures}
 
+
         rDisplNone = {this.state.rHidden} rhumDrinkName={this.state.rhumDrinkName}
+        rDrinkPhoto = {this.state.rhumDrinkPhoto} rDrinkRecipe = {this.state.rhumDrinkRecipe}
+        rDrinkIngredients={this.state.rhumDrinkIngredients} rDrinkMeasures={this.state.rhumDrinkMeasures}
          />}/>
         <Route path='/analcolic' component={ Analcolic } />
         </Switch>
@@ -408,7 +401,6 @@ requestInfoVodkaDrinks(){
       );
   }
   }
-
 
   export default App
 
