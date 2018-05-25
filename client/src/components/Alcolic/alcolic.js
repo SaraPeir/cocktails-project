@@ -82,7 +82,6 @@ class Alcolic extends Component {
           </div>
 
           <div className="item-wrapper" id="type3">
-              <p>Ingredients: </p>
               <p>{this.props.vDrinkIngredients}</p>
             </div>
             <div className="item-wrapper" id="type4">
@@ -90,7 +89,7 @@ class Alcolic extends Component {
               </div>
 
           <div className="item-wrapper" id="type2">
-              Procedure: {this.props.vDrinkRecipe}
+              {this.props.vDrinkRecipe}
             </div>
 
 
