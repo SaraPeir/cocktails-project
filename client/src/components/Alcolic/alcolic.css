@@ -5,6 +5,8 @@ display: flex;
 flex-direction: row;
 flex-wrap: nowrap;
 justify-content: flex-start;
+padding: 20px;
+border: 1px solid red;
 }
 
 .to-home-button{
@@ -18,11 +20,10 @@ justify-content: flex-start;
 }
 
 .select-wrapper{
-  width: 50%;
-  margin: 20px;
+  width: 33%;
   text-align: left;
-  padding: 10px;
   padding-bottom: 30px;
+border: 1px solid red;
 }
 
 .select-style{
@@ -53,22 +54,34 @@ font-family: 'EB Garamond', serif;*/
 width: 50%;
 background: red;
 position: relative;
-left: 100px;
+margin-left: auto;
+margin-right: auto;
+
 }
 
 .vodka-cocktail-wrapper{
 width: 50%;
-background: green;
-position: relative;
-left: 100px;
+background: #FF9966;
+padding: 10px;
+margin-right: auto;
+margin-left: auto;
+display: flex;
+flex-direction: column;
 }
 
 .rhum-cocktail-wrapper{
 width: 50%;
 background: pink;
 position: relative;
-left: 100px;
+margin-left: auto;
+margin-right: auto;
 }
+
+.item-wrapper{
+  width: 100%;
+  text-align: center;
+}
+
 
 .alcolic-page-background{
   width: 100%;
@@ -116,14 +129,36 @@ left: 100px;
   color: #E9967A;
   opacity: 1;
   height: 100px;
-  line-height: 50px;
+  line-height: 40px;
   font-size: 30px;
   font-weight: bold;
   transition: all 1s ease;
-
 }
 
+.drink-img{
+  width: 300px;
+}
 
+#type1{
+  font-family: 'Lobster', cursive;
+  font-size: 30px;
+}
+
+#type2{
+  font-family: 'EB Garamond', serif;
+  font-size: 20px;
+}
+
+#type3{
+  font-family: 'Lobster', serif;
+  font-size: 20px;
+}
+
+#type4{
+  font-family: 'EB Garamond', serif;
+  font-size: 15px;
+  font-weight: lighter;
+}
 
 .backhome-whole-box:hover{
   background: #E9967A;
@@ -132,5 +167,4 @@ left: 100px;
 
 .backhome-item:hover{
   cursor: pointer;
-  transform: scale(1.2);
 }

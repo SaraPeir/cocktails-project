@@ -37,8 +37,13 @@ class App extends Component {
   gHidden: 'hidden',
   ginDrinkName: '',
 
+
   vHidden: 'hidden',
   vodkaDrinkName: '',
+  vodkaDrinkPhoto: '',
+  vodkaDrinkRecipe: '',
+  vodkaDrinkIngredients: '',
+  vodkaDrinkMeasures: '',
 
   rHidden: 'hidden',
   rhumDrinkName: ''
@@ -189,11 +194,19 @@ requestInfoVodkaDrinks(){
         if(vodkaDrinksDetails !== undefined && vodkaDrinksDetails.length > 0 && selectedDrink !== 'Vodka cocktails'){
             let filtered =vodkaDrinksDetails[0].filter(function(vodkaDrink, index) {
               return vodkaDrink.drinks[0].strDrink === selectedDrink;});
+
+
                   this.setState({
                     vodkaFilteredArray:filtered,
                     vHidden: '',
-                    vodkaDrinkName: selectedDrink
+                    vodkaDrinkName: selectedDrink,
+                    vodkaDrinkPhoto: filtered[0].drinks[0].strDrinkThumb,
+                    vodkaDrinkRecipe: filtered[0].drinks[0].strInstructions
                   });
+
+            this.generateVodkaIngredientsArray()
+
+
 
             } else if(selectedDrink == 'Vodka cocktails'){
               this.setState({
@@ -202,6 +215,69 @@ requestInfoVodkaDrinks(){
               });
             }
         }
+
+      generateVodkaIngredientsArray(){
+      const vodkaFilteredArray = this.state.vodkaFilteredArray;
+      if(vodkaFilteredArray !== undefined && vodkaFilteredArray.length > 0){
+        let ingredients15 = [vodkaFilteredArray[0].drinks[0].strIngredient1, vodkaFilteredArray[0].drinks[0].strIngredient2,
+        vodkaFilteredArray[0].drinks[0].strIngredient3,
+        vodkaFilteredArray[0].drinks[0].strIngredient4,
+        vodkaFilteredArray[0].drinks[0].strIngredient5,
+        vodkaFilteredArray[0].drinks[0].strIngredient6,
+        vodkaFilteredArray[0].drinks[0].strIngredient7,
+        vodkaFilteredArray[0].drinks[0].strIngredient8,
+        vodkaFilteredArray[0].drinks[0].strIngredient9,
+        vodkaFilteredArray[0].drinks[0].strIngredient10,
+        vodkaFilteredArray[0].drinks[0].strIngredient11,
+        vodkaFilteredArray[0].drinks[0].strIngredient12,
+        vodkaFilteredArray[0].drinks[0].strIngredient13,
+        vodkaFilteredArray[0].drinks[0].strIngredient14,
+        vodkaFilteredArray[0].drinks[0].strIngredient15
+      ];
+
+      let actualVodkaIngredients = ingredients15.filter(function(ingredient, index){
+        return ingredient !== ''  && ingredient !== ' ' && ingredient !== null;
+})
+        console.log(actualVodkaIngredients);
+
+        console.log(actualVodkaIngredients.length);
+
+        let measures15 = [vodkaFilteredArray[0].drinks[0].strMeasure1, vodkaFilteredArray[0].drinks[0].strMeasure2,
+        vodkaFilteredArray[0].drinks[0].strMeasure3,
+        vodkaFilteredArray[0].drinks[0].strMeasure4,
+        vodkaFilteredArray[0].drinks[0].strMeasure5,
+        vodkaFilteredArray[0].drinks[0].strMeasure6,
+        vodkaFilteredArray[0].drinks[0].strMeasure7,
+        vodkaFilteredArray[0].drinks[0].strMeasure8,
+        vodkaFilteredArray[0].drinks[0].strMeasure9,
+        vodkaFilteredArray[0].drinks[0].strMeasure10,
+        vodkaFilteredArray[0].drinks[0].strMeasure11,
+        vodkaFilteredArray[0].drinks[0].strMeasure12,
+        vodkaFilteredArray[0].drinks[0].strMeasure13,
+        vodkaFilteredArray[0].drinks[0].strMeasure14,
+        vodkaFilteredArray[0].drinks[0].strMeasure15
+      ];
+
+      let actualVodkaMeasures = measures15.filter(function(measure, index){
+        return measure !== ''  && measure !== ' ' && measure !== null && measure !== '↵';
+  })
+        console.log(actualVodkaMeasures);
+
+        //let ingredients = actualVodkaIngredients.map( (i, index) => <p key={index}> {i}</p>);
+        let ingredients = actualVodkaIngredients.join();
+        let measures = actualVodkaMeasures.join();
+        console.log(ingredients);
+        console.log(measures);
+
+        this.setState({
+        vodkaDrinkIngredients: ingredients,
+        vodkaDrinkMeasures: measures
+        });
+
+
+
+}
+    }
 
 
     changeRhumSelectValue(event){
@@ -243,8 +319,15 @@ requestInfoVodkaDrinks(){
         <div className="app">
         <Switch>
         <Route exact path='/' component={ Hero } />
-        <Route path='/alcolic' render={(props) => <Alcolic {...props} array={this.state.data} gSelectValue={this.state.ginSelectValue} onChangeGinSelectValue= {this.changeGinSelectValue} vSelectValue={this.state.vodkaSelectValue} onChangeVodkaSelectValue={this.changeVodkaSelectValue} rSelectValue={this.state.rhumSelectValue} onChangeRhumSelectValue={this.changeRhumSelectValue} gDisplNone = {this.state.gHidden} ginDrinkName={this.state.ginDrinkName}
+        <Route path='/alcolic' render={(props) => <Alcolic {...props} array={this.state.data} gSelectValue={this.state.ginSelectValue} onChangeGinSelectValue= {this.changeGinSelectValue} vSelectValue={this.state.vodkaSelectValue} onChangeVodkaSelectValue={this.changeVodkaSelectValue}
+        rSelectValue={this.state.rhumSelectValue} onChangeRhumSelectValue={this.changeRhumSelectValue}
+
+        gDisplNone = {this.state.gHidden} ginDrinkName={this.state.ginDrinkName}
+
         vDisplNone = {this.state.vHidden} vodkaDrinkName={this.state.vodkaDrinkName}
+        vDrinkPhoto = {this.state.vodkaDrinkPhoto} vDrinkRecipe = {this.state.vodkaDrinkRecipe}
+        vDrinkIngredients={this.state.vodkaDrinkIngredients} vDrinkMeasures={this.state.vodkaDrinkMeasures}
+
         rDisplNone = {this.state.rHidden} rhumDrinkName={this.state.rhumDrinkName}
          />}/>
         <Route path='/analcolic' component={ Analcolic } />

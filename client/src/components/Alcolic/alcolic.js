@@ -44,6 +44,7 @@ class Alcolic extends Component {
 <div>
 
 <div className="alcolic-page-background">
+<div className ="title">Alcoholic drinks</div>
 </div>
 
 
@@ -66,10 +67,33 @@ class Alcolic extends Component {
     <div className="component-wrapper">
 
       <div className="select-wrapper">
-        <div className ="title">Alcolic drinks</div>
+
         <select className="select-style" value={this.props.gSelectValue} onChange={this.props.onChangeGinSelectValue}> <option>Gin cocktails</option> {this.createGinOptions()}</select>
         <select className="select-style" value={this.props.vSelectValue} onChange={this.props.onChangeVodkaSelectValue}><option>Vodka cocktails</option>{this.createVodkaOptions()}</select>
         <select className="select-style" value={this.props.rSelectValue} onChange={this.props.onChangeRhumSelectValue}><option>Rhum cocktails</option>{this.createRhumOptions()}</select>
+      </div>
+
+      <div className={`vodka-cocktail-wrapper ${this.props.vDisplNone}`}>
+        <div className="item-wrapper" id="type1">
+            {this.props.vodkaDrinkName}
+          </div>
+          <div className="item-wrapper">
+            <img className="drink-img" src={`${this.props.vDrinkPhoto}`} alt="" />
+          </div>
+
+          <div className="item-wrapper" id="type3">
+              <p>Ingredients: </p>
+              <p>{this.props.vDrinkIngredients}</p>
+            </div>
+            <div className="item-wrapper" id="type4">
+              ( {this.props.vDrinkMeasures} )
+              </div>
+
+          <div className="item-wrapper" id="type2">
+              Procedure: {this.props.vDrinkRecipe}
+            </div>
+
+
       </div>
 
 </div>
@@ -78,12 +102,12 @@ class Alcolic extends Component {
     {this.props.ginDrinkName}
 </div>
 
-<div className={`vodka-cocktail-wrapper ${this.props.vDisplNone}`}>
-    {this.props.vodkaDrinkName}
-</div>
+
 
 <div className={`rhum-cocktail-wrapper ${this.props.rDisplNone}`}>
+
     {this.props.rhumDrinkName}
+
 </div>
 
 
