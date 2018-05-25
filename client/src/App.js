@@ -36,6 +36,11 @@ class App extends Component {
 
   gHidden: 'hidden',
   ginDrinkName: '',
+  ginDrinkPhoto: '',
+  ginDrinkRecipe: '',
+  ginDrinkIngredients: '',
+  ginDrinkMeasures: '',
+
 
 
   vHidden: 'hidden',
@@ -170,8 +175,12 @@ requestInfoVodkaDrinks(){
                 this.setState({
                   ginFilteredArray:filtered,
                   gHidden: '',
-                  ginDrinkName: selectedDrink
+                  ginDrinkName: selectedDrink,
+                  ginDrinkPhoto: filtered[0].drinks[0].strDrinkThumb,
+                  ginDrinkRecipe: filtered[0].drinks[0].strInstructions
                 });
+
+            this.generateGinIngredientsArray();
 
           } else if(selectedDrink == 'Gin cocktails'){
             this.setState({
@@ -216,67 +225,128 @@ requestInfoVodkaDrinks(){
             }
         }
 
-      generateVodkaIngredientsArray(){
-      const vodkaFilteredArray = this.state.vodkaFilteredArray;
-      if(vodkaFilteredArray !== undefined && vodkaFilteredArray.length > 0){
-        let ingredients15 = [vodkaFilteredArray[0].drinks[0].strIngredient1, vodkaFilteredArray[0].drinks[0].strIngredient2,
-        vodkaFilteredArray[0].drinks[0].strIngredient3,
-        vodkaFilteredArray[0].drinks[0].strIngredient4,
-        vodkaFilteredArray[0].drinks[0].strIngredient5,
-        vodkaFilteredArray[0].drinks[0].strIngredient6,
-        vodkaFilteredArray[0].drinks[0].strIngredient7,
-        vodkaFilteredArray[0].drinks[0].strIngredient8,
-        vodkaFilteredArray[0].drinks[0].strIngredient9,
-        vodkaFilteredArray[0].drinks[0].strIngredient10,
-        vodkaFilteredArray[0].drinks[0].strIngredient11,
-        vodkaFilteredArray[0].drinks[0].strIngredient12,
-        vodkaFilteredArray[0].drinks[0].strIngredient13,
-        vodkaFilteredArray[0].drinks[0].strIngredient14,
-        vodkaFilteredArray[0].drinks[0].strIngredient15
-      ];
 
-      let actualVodkaIngredients = ingredients15.filter(function(ingredient, index){
-        return ingredient !== ''  && ingredient !== ' ' && ingredient !== null;
-})
+        generateGinIngredientsArray(){
+          const ginFilteredArray = this.state.ginFilteredArray;
+            if(ginFilteredArray !== undefined && ginFilteredArray.length > 0){
+              let ingredients15 = [ginFilteredArray[0].drinks[0].strIngredient1, ginFilteredArray[0].drinks[0].strIngredient2,
+              ginFilteredArray[0].drinks[0].strIngredient3,
+              ginFilteredArray[0].drinks[0].strIngredient4,
+              ginFilteredArray[0].drinks[0].strIngredient5,
+              ginFilteredArray[0].drinks[0].strIngredient6,
+              ginFilteredArray[0].drinks[0].strIngredient7,
+              ginFilteredArray[0].drinks[0].strIngredient8,
+              ginFilteredArray[0].drinks[0].strIngredient9,
+              ginFilteredArray[0].drinks[0].strIngredient10,
+              ginFilteredArray[0].drinks[0].strIngredient11,
+              ginFilteredArray[0].drinks[0].strIngredient12,
+              ginFilteredArray[0].drinks[0].strIngredient13,
+              ginFilteredArray[0].drinks[0].strIngredient14,
+              ginFilteredArray[0].drinks[0].strIngredient15
+            ];
+
+          let actualGinIngredients = ingredients15.filter(function(ingredient, index){
+              return ingredient !== ''  && ingredient !== ' ' && ingredient !== null;
+            })
+
+          console.log(actualGinIngredients);
+
+          console.log(actualGinIngredients.length);
+
+          let measures15 = [ginFilteredArray[0].drinks[0].strMeasure1,
+              ginFilteredArray[0].drinks[0].strMeasure2,
+              ginFilteredArray[0].drinks[0].strMeasure3,
+              ginFilteredArray[0].drinks[0].strMeasure4,
+              ginFilteredArray[0].drinks[0].strMeasure5,
+              ginFilteredArray[0].drinks[0].strMeasure6,
+              ginFilteredArray[0].drinks[0].strMeasure7,
+              ginFilteredArray[0].drinks[0].strMeasure8,
+              ginFilteredArray[0].drinks[0].strMeasure9,
+              ginFilteredArray[0].drinks[0].strMeasure10,
+              ginFilteredArray[0].drinks[0].strMeasure11,
+              ginFilteredArray[0].drinks[0].strMeasure12,
+              ginFilteredArray[0].drinks[0].strMeasure13,
+              ginFilteredArray[0].drinks[0].strMeasure14,
+              ginFilteredArray[0].drinks[0].strMeasure15
+            ];
+
+          let actualGinMeasures = measures15.filter(function(measure, index){
+            return measure !== ''  && measure !== ' ' && measure !== null && measure !== '↵';
+          })
+          console.log(actualGinMeasures);
+
+          let ingredients = actualGinIngredients.join();
+          let measures = actualGinMeasures.join();
+          console.log(ingredients);
+          console.log(measures);
+
+          this.setState({
+            ginDrinkIngredients: ingredients,
+            ginDrinkMeasures: measures
+          });
+        }
+        }
+
+      generateVodkaIngredientsArray(){
+        const vodkaFilteredArray = this.state.vodkaFilteredArray;
+          if(vodkaFilteredArray !== undefined && vodkaFilteredArray.length > 0){
+            let ingredients15 = [vodkaFilteredArray[0].drinks[0].strIngredient1, vodkaFilteredArray[0].drinks[0].strIngredient2,
+            vodkaFilteredArray[0].drinks[0].strIngredient3,
+            vodkaFilteredArray[0].drinks[0].strIngredient4,
+            vodkaFilteredArray[0].drinks[0].strIngredient5,
+            vodkaFilteredArray[0].drinks[0].strIngredient6,
+            vodkaFilteredArray[0].drinks[0].strIngredient7,
+            vodkaFilteredArray[0].drinks[0].strIngredient8,
+            vodkaFilteredArray[0].drinks[0].strIngredient9,
+            vodkaFilteredArray[0].drinks[0].strIngredient10,
+            vodkaFilteredArray[0].drinks[0].strIngredient11,
+            vodkaFilteredArray[0].drinks[0].strIngredient12,
+            vodkaFilteredArray[0].drinks[0].strIngredient13,
+            vodkaFilteredArray[0].drinks[0].strIngredient14,
+            vodkaFilteredArray[0].drinks[0].strIngredient15
+          ];
+
+        let actualVodkaIngredients = ingredients15.filter(function(ingredient, index){
+            return ingredient !== ''  && ingredient !== ' ' && ingredient !== null;
+          })
+
         console.log(actualVodkaIngredients);
 
         console.log(actualVodkaIngredients.length);
 
-        let measures15 = [vodkaFilteredArray[0].drinks[0].strMeasure1, vodkaFilteredArray[0].drinks[0].strMeasure2,
-        vodkaFilteredArray[0].drinks[0].strMeasure3,
-        vodkaFilteredArray[0].drinks[0].strMeasure4,
-        vodkaFilteredArray[0].drinks[0].strMeasure5,
-        vodkaFilteredArray[0].drinks[0].strMeasure6,
-        vodkaFilteredArray[0].drinks[0].strMeasure7,
-        vodkaFilteredArray[0].drinks[0].strMeasure8,
-        vodkaFilteredArray[0].drinks[0].strMeasure9,
-        vodkaFilteredArray[0].drinks[0].strMeasure10,
-        vodkaFilteredArray[0].drinks[0].strMeasure11,
-        vodkaFilteredArray[0].drinks[0].strMeasure12,
-        vodkaFilteredArray[0].drinks[0].strMeasure13,
-        vodkaFilteredArray[0].drinks[0].strMeasure14,
-        vodkaFilteredArray[0].drinks[0].strMeasure15
-      ];
+        let measures15 = [vodkaFilteredArray[0].drinks[0].strMeasure1,
+            vodkaFilteredArray[0].drinks[0].strMeasure2,
+            vodkaFilteredArray[0].drinks[0].strMeasure3,
+            vodkaFilteredArray[0].drinks[0].strMeasure4,
+            vodkaFilteredArray[0].drinks[0].strMeasure5,
+            vodkaFilteredArray[0].drinks[0].strMeasure6,
+            vodkaFilteredArray[0].drinks[0].strMeasure7,
+            vodkaFilteredArray[0].drinks[0].strMeasure8,
+            vodkaFilteredArray[0].drinks[0].strMeasure9,
+            vodkaFilteredArray[0].drinks[0].strMeasure10,
+            vodkaFilteredArray[0].drinks[0].strMeasure11,
+            vodkaFilteredArray[0].drinks[0].strMeasure12,
+            vodkaFilteredArray[0].drinks[0].strMeasure13,
+            vodkaFilteredArray[0].drinks[0].strMeasure14,
+            vodkaFilteredArray[0].drinks[0].strMeasure15
+          ];
 
-      let actualVodkaMeasures = measures15.filter(function(measure, index){
-        return measure !== ''  && measure !== ' ' && measure !== null && measure !== '↵';
-  })
+        let actualVodkaMeasures = measures15.filter(function(measure, index){
+          return measure !== ''  && measure !== ' ' && measure !== null && measure !== '↵';
+        })
         console.log(actualVodkaMeasures);
 
-        //let ingredients = actualVodkaIngredients.map( (i, index) => <p key={index}> {i}</p>);
+            //let ingredients = actualVodkaIngredients.map( (i, index) => <p key={index}> {i}</p>);
         let ingredients = actualVodkaIngredients.join();
         let measures = actualVodkaMeasures.join();
         console.log(ingredients);
         console.log(measures);
 
         this.setState({
-        vodkaDrinkIngredients: ingredients,
-        vodkaDrinkMeasures: measures
+          vodkaDrinkIngredients: ingredients,
+          vodkaDrinkMeasures: measures
         });
-
-
-
-}
+      }
     }
 
 
@@ -323,6 +393,8 @@ requestInfoVodkaDrinks(){
         rSelectValue={this.state.rhumSelectValue} onChangeRhumSelectValue={this.changeRhumSelectValue}
 
         gDisplNone = {this.state.gHidden} ginDrinkName={this.state.ginDrinkName}
+        gDrinkPhoto = {this.state.ginDrinkPhoto} gDrinkRecipe = {this.state.ginDrinkRecipe}
+        gDrinkIngredients={this.state.ginDrinkIngredients} gDrinkMeasures={this.state.ginDrinkMeasures}
 
         vDisplNone = {this.state.vHidden} vodkaDrinkName={this.state.vodkaDrinkName}
         vDrinkPhoto = {this.state.vodkaDrinkPhoto} vDrinkRecipe = {this.state.vodkaDrinkRecipe}

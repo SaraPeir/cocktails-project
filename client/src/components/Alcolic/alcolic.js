@@ -68,6 +68,26 @@ class Alcolic extends Component {
                 </select>
             </div>
 
+
+            <div className={`gin-cocktail-wrapper ${this.props.gDisplNone}`}>
+                <div className="item-wrapper" id="type1">
+                  {this.props.ginDrinkName}
+                </div>
+                <div className="item-wrapper">
+                  <img className="drink-img" src={`${this.props.gDrinkPhoto}`} alt="" />
+                </div>
+                <div className="item-wrapper" id="type3">
+                  <p>{this.props.gDrinkIngredients}</p>
+                </div>
+                <div className="item-wrapper" id="type4">
+                  ( {this.props.gDrinkMeasures} )
+                </div>
+                <div className="item-wrapper" id="type2">
+                  {this.props.gDrinkRecipe}
+                </div>
+            </div>
+
+
             <div className={`vodka-cocktail-wrapper ${this.props.vDisplNone}`}>
                 <div className="item-wrapper" id="type1">
                   {this.props.vodkaDrinkName}

@@ -33,16 +33,9 @@ padding: 20px;
   border: 2px solid #E9967A;
   font-family: 'EB Garamond', serif;
   font-size: 20px;
-
 }
 
-/*font-family: 'Lobster', cursive;
-font-family: 'EB Garamond', serif;*/
 
-/*.to-home-button:hover{
-  font-size: 20px;
-  font-weight: bold;
-}*/
 
 .title{
   font-family: 'Lobster', cursive;
@@ -57,7 +50,16 @@ width: 50%;
 position: relative;
 margin-left: auto;
 margin-right: auto;
+}
 
+.gin-cocktail-wrapper{
+width: 50%;
+background: #FF9966;
+padding: 10px;
+margin-right: auto;
+margin-left: auto;
+display: flex;
+flex-direction: column;
 }
 
 .vodka-cocktail-wrapper{
