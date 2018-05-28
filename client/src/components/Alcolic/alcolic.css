@@ -55,6 +55,7 @@ margin-right: auto;
 margin-left: auto;
 display: flex;
 flex-direction: column;
+border: 2px solid black;
 }
 
 .vodka-cocktail-wrapper{
@@ -65,6 +66,7 @@ margin-right: auto;
 margin-left: auto;
 display: flex;
 flex-direction: column;
+border: 2px solid black;
 }
 
 .rhum-cocktail-wrapper{
@@ -75,6 +77,7 @@ margin-right: auto;
 margin-left: auto;
 display: flex;
 flex-direction: column;
+border: 2px solid black;
 }
 
 .item-wrapper{
@@ -167,4 +170,8 @@ flex-direction: column;
 
 .backhome-item:hover{
   cursor: pointer;
+}
+
+.img-border{
+  border: 2px solid #98FB98;
 }

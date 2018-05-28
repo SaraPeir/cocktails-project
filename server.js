@@ -28,7 +28,8 @@ app.get('/api/customers', (req, res) => {
     {id: 1, firstName: 'John', lastName: 'Doe'},
     {id: 2, firstName: 'Brad', lastName: 'Traversy'},
     {id: 3, firstName: 'Mary', lastName: 'Swanson'},
-    {id: 4, firstName: 'Sara', lastName: 'Peirce'}
+    {id: 4, firstName: 'Sara', lastName: 'Peirce'},
+    {id: 5, firstName: 'Porcellino', lastName: 'Coccolato'}
   ];
 
   res.json(customers);

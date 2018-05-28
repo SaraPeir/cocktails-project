@@ -74,7 +74,7 @@ class Alcolic extends Component {
                   {this.props.ginDrinkName}
                 </div>
                 <div className="item-wrapper">
-                  <img className="drink-img" src={`${this.props.gDrinkPhoto}`} alt="" />
+                  <img className="drink-img img-border" src={`${this.props.gDrinkPhoto}`} alt="" />
                 </div>
                 <div className="item-wrapper" id="type3">
                   <p>{this.props.gDrinkIngredients}</p>
@@ -92,7 +92,7 @@ class Alcolic extends Component {
                   {this.props.vodkaDrinkName}
                 </div>
                 <div className="item-wrapper">
-                  <img className="drink-img" src={`${this.props.vDrinkPhoto}`} alt="" />
+                  <img className="drink-img img-border" src={`${this.props.vDrinkPhoto}`} alt="" />
                 </div>
                 <div className="item-wrapper" id="type3">
                   <p>{this.props.vDrinkIngredients}</p>
@@ -110,7 +110,7 @@ class Alcolic extends Component {
                   {this.props.rhumDrinkName}
                 </div>
                 <div className="item-wrapper">
-                  <img height="300px"  src={`${this.props.rDrinkPhoto}`} alt="" />
+                  <img height="300px" className="img-border" src={`${this.props.rDrinkPhoto}`} alt="" />
                 </div>
                 <div className="item-wrapper" id="type3">
                   <p>{this.props.rDrinkIngredients}</p>
