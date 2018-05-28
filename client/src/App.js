@@ -2,10 +2,7 @@ import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import logo from './logo.svg'
-import './App.css'
-import store from './store'
-import Customers from './components/Customer/customers';
-import Footer from './components/Footer/footer';
+import './App.css';
 import Hero from './components/Hero/hero';
 import Alcolic from './components/Alcolic/alcolic';
 //import Analcolic from './components/Analcolic/analcolic';
