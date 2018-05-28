@@ -119,26 +119,6 @@ requestInfoVodkaDrinks(){
   }
 }
 
-    requestInfo() {
-      var apiAlcoholicCocktails =  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic`).then(response => response.json());
-      var apiGinCocktails =  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin`).then(response => response.json());
-      var apiVodkaCocktails =  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Vodka`).then(response => response.json());
-      var apiRhumCocktails =  fetch('/api/rhum').then(response => response.json());
-      var apiNotAlcoholicCocktails = fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic`).then(response => response.json());
-      var combinedData = [apiAlcoholicCocktails, apiGinCocktails, apiVodkaCocktails, apiRhumCocktails, apiNotAlcoholicCocktails];
-      Promise.all(combinedData).then(c => {
-      let allCocktailsData = this.state.data;
-      allCocktailsData.push(c);
-      this.setState({
-        data:allCocktailsData,
-        idGin:allCocktailsData[0][1].drinks.map( (g, index) => g.idDrink),
-        idVodka:allCocktailsData[0][2].drinks.map( (v, index) => v.idDrink)
-     });
-        this.requestInfoGinDrinks();
-        this.requestInfoVodkaDrinks();
-    })
-    }
-
     resetGinSelect(event){
       this.setState({
         ginSelectValue: 'Gin cocktails',
@@ -368,6 +348,26 @@ requestInfoVodkaDrinks(){
             rHidden: 'hidden'
           });
         }
+    }
+
+    requestInfo() {
+      var apiAlcoholicCocktails =  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic`).then(response => response.json());
+      var apiGinCocktails =  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin`).then(response => response.json());
+      var apiVodkaCocktails =  fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Vodka`).then(response => response.json());
+      var apiRhumCocktails =  fetch('/api/rhum').then(response => response.json());
+      var apiNotAlcoholicCocktails = fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic`).then(response => response.json());
+      var combinedData = [apiAlcoholicCocktails, apiGinCocktails, apiVodkaCocktails, apiRhumCocktails, apiNotAlcoholicCocktails];
+      Promise.all(combinedData).then(c => {
+      let allCocktailsData = this.state.data;
+      allCocktailsData.push(c);
+      this.setState({
+        data:allCocktailsData,
+        idGin:allCocktailsData[0][1].drinks.map( (g, index) => g.idDrink),
+        idVodka:allCocktailsData[0][2].drinks.map( (v, index) => v.idDrink)
+     });
+        this.requestInfoGinDrinks();
+        this.requestInfoVodkaDrinks();
+    })
     }
 
     componentDidMount(){
